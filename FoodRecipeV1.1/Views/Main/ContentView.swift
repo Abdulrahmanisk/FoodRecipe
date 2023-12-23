@@ -8,14 +8,38 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var tabSelected: Tab = .house
+    
+    init() {
+        UITabBar.appearance().isHidden = true
+    }
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+            VStack {
+                TabView(selection: $tabSelected) {
+                    if tabSelected == .house {
+                        HomeView()
+                    }
+                    if tabSelected == .book {
+                        CategoriesView()
+                    }
+                    if tabSelected == .heart {
+                        FavoritesView()
+                    }
+                    if tabSelected == .plus {
+                        NewRecipeView()
+                    }
+                    if tabSelected == .gearshape {
+                        Settings()
+                    }
+                }
+            }
+            VStack {
+                Spacer()
+                TabBar(selectedTab: $tabSelected)
+            }
         }
-        .padding()
     }
 }
 
