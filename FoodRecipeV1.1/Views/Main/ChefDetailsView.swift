@@ -10,7 +10,25 @@ import SwiftUI
 struct ChefDetailsView: View {
     let recipes: Recipe
     var body: some View {
-        Text(recipes.chefname)
+        
+       
+            VStack (alignment: .leading, spacing: 10){
+                NavigationView {
+                HStack {
+                    Image(recipes.chefimage) .resizable() .frame(width: 100, height: 100) .aspectRatio(contentMode: .fill) .clipShape(Circle())
+                    Text(recipes.chefname) .font(.title.weight(.bold))
+                }
+                Text(recipes.description) .padding()
+                HStack {
+                ForEach(Recipe.all.shuffled().prefix(5)) { recipe in
+                    VStack (alignment: .leading) {
+                        RecipeCardView(recipes: recipe)
+                    }
+                        }
+                    }
+                Spacer()
+            } .padding()
+        }
     }
 }
 

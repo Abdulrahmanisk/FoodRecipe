@@ -8,10 +8,34 @@
 import SwiftUI
 
 struct LoadView: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+    @State var isActive: Bool = false
+    struct CustomColor {
+        static let bbb = Color("bbb")
     }
+    var body: some View {
+        VStack {
+            VStack {
+                if self.isActive {
+                    HomeView()
+                } else {
+                    
+                    GifImage("loading") .background(.black) .frame(width: 700, height: 500)
+                }
+            }
+            
+        }
+        .frame(width: 1000, height: 1000) .background(CustomColor.bbb)
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5) {
+                withAnimation {
+                    self.isActive = true
+                }
+            }
+        }
+    }
+    
 }
+
 
 #Preview {
     LoadView()

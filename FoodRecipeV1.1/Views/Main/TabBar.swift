@@ -12,7 +12,7 @@ enum Tab: String, CaseIterable {
     case book = "book"
     case plus = "plus.circle"
     case heart
-    case gearshape
+    case person
 }
 struct TabBar: View {
     struct CustomColor {
@@ -33,15 +33,16 @@ struct TabBar: View {
             return .green
         case .heart:
             return .red
-        case .gearshape:
+        case .person:
             return .gray
         }
     }
+
     var body: some View {
         VStack {
             HStack {
                 ForEach(Tab.allCases, id: \.rawValue) { tab in
-                Spacer()
+                    Spacer()
                     Image(systemName: selectedTab == tab ? fillImage : tab.rawValue)
                         .scaleEffect(selectedTab == tab ? 1.25 : 1.0)
                         .foregroundColor(selectedTab == tab ? tabColor : .gray)
@@ -54,10 +55,10 @@ struct TabBar: View {
                     Spacer()
                 }
             }
-                .frame(width: nil, height: 60)
-                .background(.thinMaterial)
-                .cornerRadius(10)
-                .padding()
+            .frame(width: nil, height: 80)
+            .background(.white)
+            .cornerRadius(10)
+            
         }
     }
 }

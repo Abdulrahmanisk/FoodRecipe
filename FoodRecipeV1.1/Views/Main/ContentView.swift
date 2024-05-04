@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isActive: Bool = false
+    struct CustomColor {
+        static let bbb = Color("bbb")
+    }
+
     @State private var tabSelected: Tab = .house
     
     init() {
@@ -18,6 +23,9 @@ struct ContentView: View {
         ZStack {
             VStack {
                 TabView(selection: $tabSelected) {
+                    if tabSelected == nil {
+                        LoadView()
+                    }
                     if tabSelected == .house {
                         HomeView()
                     }
@@ -30,18 +38,22 @@ struct ContentView: View {
                     if tabSelected == .plus {
                         NewRecipeView()
                     }
-                    if tabSelected == .gearshape {
-                        Settings()
+                    if tabSelected == .person {
+                        Profile()
                     }
                 }
             }
             VStack {
                 Spacer()
                 TabBar(selectedTab: $tabSelected)
-            }
+                
+                
+            }  .ignoresSafeArea()
         }
     }
 }
+
+
 
 #Preview {
     ContentView()

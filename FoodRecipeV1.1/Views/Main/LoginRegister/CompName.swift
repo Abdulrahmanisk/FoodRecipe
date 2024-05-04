@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct SwiftUIView: View {
+struct CompName: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Text("Login with whatever compony you want")
     }
 }
 
 #Preview {
-    SwiftUIView()
+    CompName()
 }
